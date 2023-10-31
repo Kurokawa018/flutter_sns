@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "854797702565",
+    "firebase_url": "https://flutter-udemy-e155b-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "flutter-udemy-e155b",
+    "storage_bucket": "flutter-udemy-e155b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854797702565:android:c0519549be90fad577844c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_udemy_sns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854797702565-7r40eqqhdja42pm4ofibmo5c6uldtnn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC7UMSJp1lBG0AxSuct-8n68Rs9x8Y_Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854797702565-7r40eqqhdja42pm4ofibmo5c6uldtnn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "854797702565-b3ieb1j8u57kb22uafk02njs8cdf0usa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterUdemySns"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
