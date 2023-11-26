@@ -32,6 +32,7 @@ class SignupModel extends ChangeNotifier {
       userName: aliceName,
       uid: uid,
       email: email,
+      userImageURL: "",
     );
     final Map<String, dynamic> userData = firestoreUser.toJson();
     // final Map<String,dynamic> userData = {

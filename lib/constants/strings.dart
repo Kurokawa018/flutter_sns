@@ -1,4 +1,5 @@
-
+//packages
+import 'package:uuid/uuid.dart';
 //titles
 const String appTitle = "SNS";
 const String signupTitle = "新規登録";
@@ -20,3 +21,10 @@ const String aliceName = "アリス";
 const String usersFieldKey = "users";
 //message
 const String userCreatedMsg = "ユーザーが作成できました";
+
+String returnUuidV4() {
+  final Uuid uuid = Uuid();
+  return uuid.v4();
+}
+
+String returnJpgFileName () => "${returnUuidV4()}.jpg";

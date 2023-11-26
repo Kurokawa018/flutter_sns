@@ -10,6 +10,8 @@ import 'package:flutter_udemy_sns/constants/routes.dart' as routes;
 // domain
 import 'package:flutter_udemy_sns/domain/firestore_user/firestore_user.dart';
 
+import '../domain/firestore_user/firestore_user.dart';
+
 final mainProvider = ChangeNotifierProvider(
         (ref) => MainModel()
 );
@@ -18,7 +20,7 @@ class MainModel extends ChangeNotifier {
   bool isLoading = false;
   User? currentUser;
   late DocumentSnapshot<Map<String,dynamic>> currentUserDoc;
-  late FirestoreUser fireStoreUser;
+  late FirestoreUser firestoreUser;
   //以下がMainModelが起動した時の処理
   // ユーザーの動作を必要としないモデルの関数
   MainModel() {
@@ -31,7 +33,8 @@ class MainModel extends ChangeNotifier {
     currentUser = FirebaseAuth.instance.currentUser;
     // hcbXO8Rs4PPGua2vlPL92XTmpJj1
     currentUserDoc = await FirebaseFirestore.instance.collection(usersFieldKey).doc(currentUser!.uid).get();
-    fireStoreUser = FirestoreUser.fromJson(currentUserDoc.data()!);
+    print(currentUserDoc.data());
+    firestoreUser = FirestoreUser.fromJson(currentUserDoc.data()!);
     // currentUserのuidの取得が可能になりました
     endLoading();
   }
@@ -51,6 +54,6 @@ class MainModel extends ChangeNotifier {
   Future<void> logout({required BuildContext context,required MainModel mainModel}) async {
     await FirebaseAuth.instance.signOut();
     setCurrentUser();
-    routes.toLoginPage(context: context);
+    routes.toLoginPage(context: context, mainModel: mainModel);
   }
 }

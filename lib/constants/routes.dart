@@ -12,4 +12,4 @@ void toSignupPage({ required BuildContext context}) => Navigator.push(context, M
 
 void toMyApp({ required BuildContext context}) => Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
 
-void toLoginPage({ required BuildContext context}) => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+void toLoginPage({ required BuildContext context, required MainModel mainModel}) => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));

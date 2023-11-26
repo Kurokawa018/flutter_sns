@@ -58,11 +58,10 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("===============loading2===============");
+    print("Start Execution Main Model");
     final MainModel mainModel = ref.watch(mainProvider);
-    print("===============loading5===============");
+    print("Ending Execution Main Model");
     final SnsBottomNavigationBarModel snsBottomNavigationBarModel = ref.watch(snsBottomNavigationBarProvider);
-    print("===============loading4===============");
 
     //mainモデルが起動し、initが実行される
     return Scaffold(
