@@ -1,4 +1,5 @@
 //flutter
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,14 @@ import 'package:flutter_udemy_sns/constants/strings.dart';
 //page
 import 'package:image_picker/image_picker.dart';
 
+import '../../domain/firestore_user/firestore_user.dart';
+import '../main_model.dart';
+
 final profileProvider = ChangeNotifierProvider(
         (ref) => ProfileModel());
 
 class ProfileModel extends ChangeNotifier{
-  XFile? xFile;
-  Future<void> pickImage() async{
-    xFile = await returnXFile();
-  }
+  File? croppedFile;
 
   Future<String> uploadImageAndGetURL( {required String uid, required File file}) async {
     final String fileName = returnJpgFileName();
@@ -29,13 +30,23 @@ class ProfileModel extends ChangeNotifier{
   }
 
   Future<void> uploadUserImage({ required DocumentSnapshot<Map<String, dynamic>> currentUserDoc}) async {
-    xFile = await returnXFile();
+    final XFile xFile = await returnXFile();
     final String uid = currentUserDoc.id;
     final File file = File(xFile!.path);
     final String url = await uploadImageAndGetURL(uid: uid, file: file);
     await currentUserDoc.reference.update({
       "userImageURL" : url,
     });
+    notifyListeners();
+  }
+
+  void follow({required MainModel mainModel,required FirestoreUser passiveFirestoreUser}) {
+    mainModel.followingUids.add(passiveFirestoreUser.uid);
+    notifyListeners();
+  }
+
+  void unfollow({required MainModel mainModel,required FirestoreUser passiveFirestoreUser}) {
+    mainModel.followingUids.remove(passiveFirestoreUser.uid);
     notifyListeners();
   }
 }

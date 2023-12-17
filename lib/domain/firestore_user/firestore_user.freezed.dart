@@ -23,6 +23,8 @@ mixin _$FirestoreUser {
   dynamic get createdAt => throw _privateConstructorUsedError;
   dynamic get updatadAt => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  int get followerCount => throw _privateConstructorUsedError;
+  int get followingCount => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get userImageURL => throw _privateConstructorUsedError;
@@ -43,6 +45,8 @@ abstract class $FirestoreUserCopyWith<$Res> {
       {dynamic createdAt,
       dynamic updatadAt,
       String email,
+      int followerCount,
+      int followingCount,
       String userName,
       String uid,
       String userImageURL});
@@ -64,6 +68,8 @@ class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
     Object? createdAt = freezed,
     Object? updatadAt = freezed,
     Object? email = null,
+    Object? followerCount = null,
+    Object? followingCount = null,
     Object? userName = null,
     Object? uid = null,
     Object? userImageURL = null,
@@ -81,6 +87,14 @@ class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      followerCount: null == followerCount
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      followingCount: null == followingCount
+          ? _value.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -109,6 +123,8 @@ abstract class _$$_FirestoreUserCopyWith<$Res>
       {dynamic createdAt,
       dynamic updatadAt,
       String email,
+      int followerCount,
+      int followingCount,
       String userName,
       String uid,
       String userImageURL});
@@ -128,6 +144,8 @@ class __$$_FirestoreUserCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatadAt = freezed,
     Object? email = null,
+    Object? followerCount = null,
+    Object? followingCount = null,
     Object? userName = null,
     Object? uid = null,
     Object? userImageURL = null,
@@ -145,6 +163,14 @@ class __$$_FirestoreUserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      followerCount: null == followerCount
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      followingCount: null == followingCount
+          ? _value.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -168,6 +194,8 @@ class _$_FirestoreUser implements _FirestoreUser {
       {required this.createdAt,
       required this.updatadAt,
       required this.email,
+      required this.followerCount,
+      required this.followingCount,
       required this.userName,
       required this.uid,
       required this.userImageURL});
@@ -182,6 +210,10 @@ class _$_FirestoreUser implements _FirestoreUser {
   @override
   final String email;
   @override
+  final int followerCount;
+  @override
+  final int followingCount;
+  @override
   final String userName;
   @override
   final String uid;
@@ -190,7 +222,7 @@ class _$_FirestoreUser implements _FirestoreUser {
 
   @override
   String toString() {
-    return 'FirestoreUser(createdAt: $createdAt, updatadAt: $updatadAt, email: $email, userName: $userName, uid: $uid, userImageURL: $userImageURL)';
+    return 'FirestoreUser(createdAt: $createdAt, updatadAt: $updatadAt, email: $email, followerCount: $followerCount, followingCount: $followingCount, userName: $userName, uid: $uid, userImageURL: $userImageURL)';
   }
 
   @override
@@ -201,6 +233,10 @@ class _$_FirestoreUser implements _FirestoreUser {
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatadAt, updatadAt) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.followerCount, followerCount) ||
+                other.followerCount == followerCount) &&
+            (identical(other.followingCount, followingCount) ||
+                other.followingCount == followingCount) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.uid, uid) || other.uid == uid) &&
@@ -215,6 +251,8 @@ class _$_FirestoreUser implements _FirestoreUser {
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatadAt),
       email,
+      followerCount,
+      followingCount,
       userName,
       uid,
       userImageURL);
@@ -238,6 +276,8 @@ abstract class _FirestoreUser implements FirestoreUser {
       {required final dynamic createdAt,
       required final dynamic updatadAt,
       required final String email,
+      required final int followerCount,
+      required final int followingCount,
       required final String userName,
       required final String uid,
       required final String userImageURL}) = _$_FirestoreUser;
@@ -251,6 +291,10 @@ abstract class _FirestoreUser implements FirestoreUser {
   dynamic get updatadAt;
   @override
   String get email;
+  @override
+  int get followerCount;
+  @override
+  int get followingCount;
   @override
   String get userName;
   @override

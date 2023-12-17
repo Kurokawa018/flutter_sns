@@ -4,6 +4,9 @@ import 'package:uuid/uuid.dart';
 const String appTitle = "SNS";
 const String signupTitle = "新規登録";
 const String loginTitle = "ログイン";
+const String cropperTitle = "Cropper";
+const String accountTitle = "アカウント";
+const String themeTitle = "テーマ";
 //bottom navigation bat
 const String homeText = "Home";
 const String searchText = "Search";
@@ -21,6 +24,9 @@ const String aliceName = "アリス";
 const String usersFieldKey = "users";
 //message
 const String userCreatedMsg = "ユーザーが作成できました";
+
+//prefs key
+const String isDarkThemePrefsKey = "isDarkTheme";
 
 String returnUuidV4() {
   final Uuid uuid = Uuid();

@@ -21,6 +21,8 @@ class MainModel extends ChangeNotifier {
   User? currentUser;
   late DocumentSnapshot<Map<String,dynamic>> currentUserDoc;
   late FirestoreUser firestoreUser;
+
+  List<String> followingUids = [];
   //以下がMainModelが起動した時の処理
   // ユーザーの動作を必要としないモデルの関数
   MainModel() {
@@ -31,6 +33,7 @@ class MainModel extends ChangeNotifier {
     startLoading();
     // modelを跨がないでcurrentUserの更新
     currentUser = FirebaseAuth.instance.currentUser;
+    print(currentUser!.uid);
     // hcbXO8Rs4PPGua2vlPL92XTmpJj1
     currentUserDoc = await FirebaseFirestore.instance.collection(usersFieldKey).doc(currentUser!.uid).get();
     print(currentUserDoc.data());
@@ -51,9 +54,9 @@ class MainModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> logout({required BuildContext context,required MainModel mainModel}) async {
+  Future<void> logout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
     setCurrentUser();
-    routes.toLoginPage(context: context, mainModel: mainModel);
+    routes.toLoginPage(context: context);
   }
 }
