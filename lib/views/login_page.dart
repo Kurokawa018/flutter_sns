@@ -16,6 +16,7 @@ import 'package:flutter_udemy_sns/details/rounded_button.dart';
 
 //constans
 import 'package:flutter_udemy_sns/constants/strings.dart';
+import 'package:flutter_udemy_sns/constants/routes.dart' as routes;
 
 class LoginPage extends ConsumerWidget{
   const LoginPage({Key? key, }) : super(key: key);
@@ -56,7 +57,11 @@ class LoginPage extends ConsumerWidget{
             widthRate: 0.85,
             color: Colors.green,
             text: loginText,
-          )
+          ),
+          TextButton(
+              onPressed: () => routes.toSignupPage(context: context),
+              child: const Text(noAccountMsg)
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

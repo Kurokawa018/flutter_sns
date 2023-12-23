@@ -11,6 +11,9 @@ import 'package:flutter_udemy_sns/domain/firestore_user/firestore_user.dart';
 //constans
 import 'package:flutter_udemy_sns/constants/strings.dart';
 
+//routes
+import 'package:flutter_udemy_sns/constants/routes.dart' as routes;
+
 final signupProvider = ChangeNotifierProvider(
         (ref) => SignupModel()
 );
@@ -52,6 +55,7 @@ class SignupModel extends ChangeNotifier {
       final User? user = result.user;
       final String uid = user!.uid;
       await createFirestoreUser(context: context, uid: uid);
+      routes.toMyApp(context: context);
     } on FirebaseAuthException catch (e) {
       print(e.toString());
     }
