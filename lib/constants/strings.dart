@@ -19,6 +19,7 @@ const String loginText = "ログインする";
 const String passwordText = "パスワード";
 const String logoutText = "ログアウトを行う";
 const String loadingText = "ローディング中";
+const String uploadText = "アップロードする";
 //name
 const String aliceName = "アリス";
 //field key

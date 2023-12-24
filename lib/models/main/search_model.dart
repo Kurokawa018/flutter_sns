@@ -15,11 +15,11 @@ class SearchModel extends ChangeNotifier {
 
   List<FirestoreUser> users = [];
   SearchModel() {
-
+   init();
   }
 
   Future<void> init() async {
-    final qshot = await FirebaseFirestore.instance.collection(usersFieldKey).get();
+    final qshot = await FirebaseFirestore.instance.collection("users").get();
     final List<DocumentSnapshot<Map<String,dynamic>>> docs = qshot.docs;
     users = docs.map((e) => FirestoreUser.fromJson(e.data()!)).toList();
   }

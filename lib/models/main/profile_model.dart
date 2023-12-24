@@ -16,53 +16,30 @@ import '../../domain/following_token/following_token.dart';
 import '../main_model.dart';
 
 final profileProvider = ChangeNotifierProvider(
-        (ref) => ProfileModel());
+    ((ref) => ProfileModel()
+    ));
 
-class ProfileModel extends ChangeNotifier{
+class ProfileModel extends ChangeNotifier {
   File? croppedFile;
 
-  Future<String> uploadImageAndGetURL( {required String uid, required File file}) async {
+  Future<String> uploadImageAndGetURL({required String uid,required File file}) async {
     final String fileName = returnJpgFileName();
-    final Reference storegeRef = FirebaseStorage.instance.ref().child("users").child(uid).child(fileName);
-    //users/uid/ファイル名にアップロード
-    await storegeRef.putFile(file);
-    //users/uid/ファイル名のURLを取得
-    return await storegeRef.getDownloadURL();
+    final Reference storageRef = FirebaseStorage.instance.ref().child("users").child(uid).child(fileName);
+    // users/uid/ファイル名 にアップロード
+    await storageRef.putFile(file);
+    // users/uid/ファイル名 のURLを取得している
+    return await storageRef.getDownloadURL();
   }
 
-  Future<void> uploadUserImage({ required DocumentSnapshot<Map<String, dynamic>> currentUserDoc}) async {
+  Future<void> uploadUserImage({required DocumentSnapshot<Map<String,dynamic>> currentUserDoc}) async {
     final XFile xFile = await returnXFile();
+    final File file = File(xFile.path);
     final String uid = currentUserDoc.id;
-    final File file = File(xFile!.path);
+    croppedFile = await returnCroppedFile(xFile: xFile);
     final String url = await uploadImageAndGetURL(uid: uid, file: file);
     await currentUserDoc.reference.update({
-      "userImageURL" : url,
+      'userImageURL': url,
     });
     notifyListeners();
-  }
-
-  Future<void> follow({required MainModel mainModel,required FirestoreUser passiveFirestoreUser }) async {
-    // settings
-    mainModel.followingUids.add(passiveFirestoreUser.uid);
-    notifyListeners();
-    final String tokenId = returnUuidV4();
-    final Timestamp now = Timestamp.now();
-    final FollowingToken followingToken = FollowingToken(createdAt: now,passiveUid: passiveFirestoreUser.uid,tokenId: tokenId);
-    final FirestoreUser activeUser = mainModel.firestoreUser;
-    // 自分がフォローした印
-    await FirebaseFirestore.instance.collection("users").doc(activeUser.uid).collection("tokens").doc(tokenId).set(followingToken.toJson());
-  }
-
-  Future<void> unfollow({required MainModel mainModel,required FirestoreUser passiveFirestoreUser }) async {
-    mainModel.followingUids.remove(passiveFirestoreUser.uid);
-    notifyListeners();
-    // followしているTokenを取得する
-    final FirestoreUser activeUser = mainModel.firestoreUser;
-    // qshotというdataの塊の存在を存在を取得
-    final QuerySnapshot<Map<String, dynamic>>  qshot = await FirebaseFirestore.instance.collection("users").doc(activeUser.uid).collection("tokens").where("passiveUid",isEqualTo: passiveFirestoreUser.uid).get();
-    // 1個しか取得してないけど複数している扱い
-    final List<DocumentSnapshot<Map<String,dynamic>>> docs = qshot.docs;
-    final DocumentSnapshot<Map<String, dynamic>> token  = docs.first;
-    await token.reference.delete();
   }
 }
